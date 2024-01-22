@@ -1,9 +1,46 @@
-<h1>Hello</h1>
-
-<!-- inside app/views/home/index.html.erb -->
-<h1>Welcome, this is the home page</h1>
-
-<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title"
-    data-bs-content="Amazing content, right ?">
-    Click to toggle popover
-</button>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p class="h4">Trending Today</p>
+        </div>
+    </div>
+    <!-- First Row -->
+    <div class="row">
+        <div class="col-sm-3">
+            Trending 1
+        </div>
+        <div class="col-sm-3">
+            Trending
+        </div>
+        <div class="col-sm-3">
+            Trending
+        </div>
+        <div class="col-sm-3">
+            Trending
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <p class="h5">Popular Posts</p>
+        </div>
+    </div>
+    <!-- Second Row -->
+    <div class="row">
+        <div class="col-8">
+            Left Col (Wide)
+        </div>
+        <div class="col-4">
+            <p class="h4 mb-4">Upcoming communities</p>
+            <div class="card">
+                <ul class="list-group">
+                    <li class="list-group-item">Cras justo odio</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">Morbi leo risus</li>
+                    <li class="list-group-item">Porta ac consectetur ac</li>
+                    <li class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            </div>
+            <%= link_to "View all" , communities_path, class: "btn btn-primary mt-3" %>
+        </div>
+    </div>
+</div>
