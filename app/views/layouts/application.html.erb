@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title>Mtaa</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%= stylesheet_link_tag "application" , "data-turbo-track"=> "reload" %>
+    <%= javascript_include_tag "application" , "data-turbo-track"=> "reload" , type: "module" %>
+
   </head>
 
   <body>
 
     <%= render partial: "layouts/header" %>
-    <%= yield %>
-    <%= render partial: "layouts/footer" %>
-    <p class="notice">
-      <%= notice %>
-    </p>
-    <p class="alert"><%= alert %></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <%= yield %>
+          </div>
 
-   
+        </div>
+      </div>
+
+    <%= render partial: "layouts/footer" %>
+      <p class="notice">
+        <%= notice %>
+      </p>
+      <p class="alert">
+        <%= alert %>
+      </p>
+
+
   </body>
+
 </html>
