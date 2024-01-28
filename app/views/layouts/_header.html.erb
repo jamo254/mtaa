@@ -3,13 +3,50 @@
         <div class="col-12 pt-3 pb-3 mb-4 border-bottom">
             <div class="float-end">
                 <% if account_signed_in? %>
-                    <%= button_to "Sign Out" ,destroy_account_session_path, method: :delete, class: "btn btn-primary" %>
-                <% else %>
-                    <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>
-                    <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
-                <% end %>
+                    <div class="dropdown">
+                        <a class="btn btn-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+
+                            <%= current_account.full_name %>
+                        </a>
+
+                        <div class="dropdown-menu">
+
+                            <%= link_to "Profile" ,"", class: "dropdown-item" %>
+                            <%= link_to "Settings" ,edit_account_registration_path, class: "dropdown-item" %>
+                            <%= link_to "Sign Out" ,destroy_account_session_path, method:
+                                        :delete,class: "dropdown-item" %>
+
+                        </div>
+                    </div>
+                    <% else %>
+                        <%= link_to "Log In" , new_account_session_path, class: "btn btn-outline-primary" %>
+                            <%= link_to "Sign Up" , new_account_registration_path, class: "btn btn-primary" %>
+                                <% end %>
             </div>
-            <p class="h3"><%= link_to "Mtaani", root_path %> </p>
+            <p class="h3">
+                <%= link_to "Mtaani" , root_path %>
+            </p>
         </div>
     </div>
 </div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var dropdown = document.querySelector('.dropdown');
+        var dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+        var dropdownMenu = dropdown.querySelector('.dropdown-menu');
+
+        dropdownToggle.addEventListener('click', function () {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (!dropdown.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    });
+</script>
