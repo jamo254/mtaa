@@ -1,0 +1,12 @@
+<% @posts.each do |post| %>
+<div class="card mb-3">
+  <div class="card-body">
+    <h4 class="card-title">
+      <%= link_to post.title, community_post_path(post.community, post) %>
+    </h4>
+    <p class="card-text"><%= truncate post.body, length: 200 %></p>
+    <p class="fst-italic"><small><%= link_to post.community.name %></small> Post by <%= link_to post.account.full_name, profile_path(post.account.username) %> <%= time_ago_in_words post.created_at %> ago.</p>
+  </div>
+</div>
+
+<% end %>
