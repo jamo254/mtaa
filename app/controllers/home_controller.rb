@@ -6,5 +6,6 @@ class HomeController < ApplicationController
 
   def profile
     @profile = Account.find_by_username params[:username]
+    @post = @profile.posts
   end
 end

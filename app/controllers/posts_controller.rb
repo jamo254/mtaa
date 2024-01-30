@@ -4,14 +4,15 @@ class PostsController < ApplicationController
 
     def index
       @posts = Post.all
+
     end
 
     def show
-        
+
     end
 
     def new
-      @community = Community.find(params[:community_id]) 
+      @community = Community.find(params[:community_id])
       @post = Post.new
     end
 
@@ -23,7 +24,7 @@ class PostsController < ApplicationController
          redirect_to communities_path(@post.community_id)
       else
         #Get the community saved with post
-        @community = Community.find(params[:community_id]) 
+        @community = Community.find(params[:community_id])
         render :new
       end
     end

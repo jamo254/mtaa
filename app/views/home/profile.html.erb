@@ -1,8 +1,12 @@
 <div class="row">
     <div class="col-sm-8">
-      
+       <%= render partial: "posts/list", locals: { posts: @posts } %>
     </div>
-    <div class="col-sm-4">
-       <%= @profile.username %>
+    <div class="col-sm-4 card">
+       <p class="h4"><%= @profile.full_name %></p>
+       <p><%= @profile.username %></p>
+       <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque doloribus iure odit voluptatibus illum tempore accusamus, non quasi a quia explicabo iusto incidunt maxime quibusdam, modi, ducimus cumque vero in.</p>
+
+       <p> Member since: <%= @profile.created_at.strftime("%d/%m/%Y") %></p>
     </div>
 </div>
