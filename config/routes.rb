@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :posts
   end
   resources :subscriptions
+  resources :comments, only: [:create]
   # Defines the root path route ("/")
   root to: "home#index"
 

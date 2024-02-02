@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     end
 
     def show
-
+      @comment = Comment.new
     end
 
     def new
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     private
     # Finding communities
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.includes(:comments).find(params[:id])
     end
 
     # Setting auth for member, preventing users from posting
