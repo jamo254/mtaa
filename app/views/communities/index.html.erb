@@ -5,11 +5,15 @@
 <% end %>
 <% if @communities.size> 0 %>
     <% @communities.each do |community| %>
-        <div class="card">
-            <h3>
-             <%= link_to community.name, community %>
-            </h3>
-            <h3><%= simple_format community.rules %></h3>
+        <div class="card m-4" style="width: 50rem;">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <%= link_to community.name, community %>
+                </h3>
+                <p class="card-text">
+                    <%= simple_format community.rules %>
+                </p>
+            </div>
         </div>
     <% end %>
 <% else %>

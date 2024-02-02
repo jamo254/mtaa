@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_account!, except: [ :index, :show ]
     before_action :set_post, only: [:show]
+    before_action :auth_member, only: [:new]
 
     def index
       @posts = Post.all
@@ -33,6 +34,14 @@ class PostsController < ApplicationController
     # Finding communities
     def set_post
       @post = Post.find(params[:id])
+    end
+
+    # Setting auth for member, preventing users from posting
+    # without joing the community
+    def auth_member
+      unless Subscription.where(community_id: params[community_id], account_id: current_account.id).any?
+         redirect_to root_path, flash: { danger: "You are not authorized to view this page"}
+      end
     end
 
     def post_values
