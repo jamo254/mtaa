@@ -2,10 +2,11 @@ Rails.application.routes.draw do
   devise_for :accounts
   get "u/:username" => "home#profile", as: :profile
   resources :communities do
-    resources :posts
+    resources :posts do
+      resources :comments, only: [:create]
+    end
   end
   resources :subscriptions
-  resources :comments, only: [:create]
   # Defines the root path route ("/")
   root to: "home#index"
 

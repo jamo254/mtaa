@@ -1,23 +1,20 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new comment_params
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(comment_params)
     @comment.account_id = current_account.id
 
-    respond_to do |format|
-      
-      format.js
-
-      if @comment.save
-        @comments = Comment.where(post_id: @comment.post_id)
-        render "comments/create"
-      else
-      end
-
-
+    if @comment.save
+       redirect_to url_for([@post.community, @post])
+    else
+      # Handle validation errors if needed
+      render 'posts/show'
     end
   end
 
+  private
+
   def comment_params
-    params.require(:comment).permit(:message, :post_id)
+    params.require(:comment).permit(:message)
   end
 end

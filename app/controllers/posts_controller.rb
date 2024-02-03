@@ -9,9 +9,11 @@ class PostsController < ApplicationController
     end
 
     def show
+      @post = Post.includes(:comments).find(params[:id])
       @comment = Comment.new
+      @community = @post.community # Assuming there is an association between Post and Community
     end
-
+    
     def new
       @community = Community.find(params[:community_id])
       @post = Post.new
@@ -22,7 +24,7 @@ class PostsController < ApplicationController
       @post.account_id = current_account.id
       @post.community_id = params[:community_id]
       if @post.save
-         redirect_to communities_path(@post.community_id)
+         redirect_to communities_path(community_id: @post.community_id, post_id: @post.id)
       else
         #Get the community saved with post
         @community = Community.find(params[:community_id])
@@ -39,7 +41,8 @@ class PostsController < ApplicationController
     # Setting auth for member, preventing users from posting
     # without joing the community
     def auth_member
-      unless Subscription.where(community_id: params[community_id], account_id: current_account.id).any?
+      unless Subscription.where(community_id: params[:community_id], account_id: current_account.id).any?
+
          redirect_to root_path, flash: { danger: "You are not authorized to view this page"}
       end
     end
