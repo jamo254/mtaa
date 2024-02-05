@@ -5,8 +5,6 @@ class SubscriptionsController < ApplicationController
       @subscription.save
 
       redirect_to community_path(@subscription.community_id)
-
-
    end
 
    def subscription_params
